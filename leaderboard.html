@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard — Cash4Trash</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body data-page="leaderboard">
+
+  <header class="navbar glass">
+    <a href="index.html" class="logo">♻ Cash<span>4</span>Trash</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="btn-nav">Dashboard →</a>
+    </nav>
+  </header>
+
+  <div class="page-wrapper">
+
+    <div class="section-header" style="margin-top:16px;margin-bottom:48px">
+      <h1>Community <span class="accent">Leaderboard</span></h1>
+      <p>The top eco-warriors making a difference, ranked by credits earned.</p>
+    </div>
+
+    <div class="leaderboard-grid">
+
+      <!-- Overall -->
+      <div class="leaderboard-card animate">
+        <div class="lb-header">🏆 All-Time Leaders</div>
+        <div class="lb-list" id="lb-overall">
+          <div class="empty-state" style="padding:24px"><p>Loading…</p></div>
+        </div>
+      </div>
+
+      <!-- Monthly -->
+      <div class="leaderboard-card animate delay-1">
+        <div class="lb-header">🌿 This Month</div>
+        <div class="lb-list" id="lb-monthly">
+          <div class="empty-state" style="padding:24px"><p>Loading…</p></div>
+        </div>
+      </div>
+
+      <!-- Yearly -->
+      <div class="leaderboard-card animate delay-2">
+        <div class="lb-header">🌎 This Year</div>
+        <div class="lb-list" id="lb-yearly">
+          <div class="empty-state" style="padding:24px"><p>Loading…</p></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:60px;padding:40px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);max-width:500px;margin-left:auto;margin-right:auto" class="animate delay-3">
+      <div style="font-size:2.5rem;margin-bottom:12px">🌱</div>
+      <h2 style="font-size:1.3rem;margin-bottom:8px">Join the Movement</h2>
+      <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:24px">Create your account and start earning credits for every kg of waste you recycle.</p>
+      <a href="login.html" class="btn btn-primary">Start Earning →</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>© 2026 Cash4Trash</span>
+    <a href="tutorial.html">User Guide</a>
+  </footer>
+
+  <div id="toast-container"></div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Cash4Trash</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <header class="navbar glass">
+    <a href="index.html" class="logo">♻ Cash<span>4</span>Trash</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="login.html" class="btn-nav">Dashboard →</a>
+    </nav>
+  </header>
+
+  <div class="page-wrapper" style="max-width:900px">
+    <div class="section-header" style="margin-top:16px;margin-bottom:48px">
+      <h1>Get in <span class="accent">Touch</span></h1>
+      <p>Questions, feedback, or partnership inquiries — we'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-layout">
+
+      <!-- Info Side -->
+      <div class="glass animate" style="padding:36px 32px">
+        <h2 style="font-size:1.5rem;margin-bottom:12px">We're here to help</h2>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:32px">Reach out any time. Our team typically responds within 24 hours.</p>
+
+        <div class="contact-detail">
+          <div class="icon">📧</div>
+          <div>
+            <strong>Email</strong>
+            <p>support@cash4trash.in</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon">📞</div>
+          <div>
+            <strong>Phone</strong>
+            <p>+91 98765 43210</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon">📍</div>
+          <div>
+            <strong>Address</strong>
+            <p>Green Hub, Koramangala<br>Bengaluru, Karnataka 560034</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon">⏰</div>
+          <div>
+            <strong>Hours</strong>
+            <p>Mon–Sat, 9am–6pm IST</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Side -->
+      <div class="glass animate delay-1" style="padding:36px 32px">
+        <h2 style="font-size:1.3rem;margin-bottom:24px">Send a Message</h2>
+
+        <div class="form-group">
+          <label for="contactName">Full Name</label>
+          <input type="text" id="contactName" placeholder="Your name">
+          <span class="field-error" id="contactName-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="contactEmail">Email Address</label>
+          <input type="email" id="contactEmail" placeholder="you@example.com">
+          <span class="field-error" id="contactEmail-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="contactSubject">Subject <span style="color:var(--text-faint)">(optional)</span></label>
+          <select id="contactSubject">
+            <option value="">Select a topic…</option>
+            <option value="support">General Support</option>
+            <option value="credits">Credits Issue</option>
+            <option value="volunteer">Volunteer Inquiry</option>
+            <option value="partnership">Partnership</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" placeholder="How can we help you?" style="min-height:120px"></textarea>
+          <span class="field-error" id="contactMessage-error"></span>
+        </div>
+
+        <button id="sendBtn" class="btn btn-primary btn-full" onclick="submitContact()">Send Message →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer style="max-width:900px;margin:0 auto;padding:32px">
+    <span>© 2026 Cash4Trash</span>
+    <a href="tutorial.html">User Guide</a>
+  </footer>
+
+  <div id="toast-container"></div>
+</body>
+</html>

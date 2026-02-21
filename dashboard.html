@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Cash4Trash</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body data-page="dashboard">
+
+  <header class="navbar glass">
+    <a href="index.html" class="logo">♻ Cash<span>4</span>Trash</a>
+    <nav>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="contact.html">Contact</a>
+      <a id="userPill" class="user-pill" href="#">
+        <div class="user-avatar" id="dashAvatar">?</div>
+        <span id="dashUserName">Loading…</span>
+      </a>
+      <a href="#" class="btn-nav" onclick="logout(); return false">Logout</a>
+    </nav>
+  </header>
+
+  <div class="page-wrapper">
+
+    <div class="page-header">
+      <div>
+        <h1>Welcome back, <span class="accent" id="dashUserName2">—</span></h1>
+        <p class="text-muted mt-8">Manage your pickups and track your earnings.</p>
+      </div>
+      <div class="credits-pill">⚡ <span id="headerCredits">0</span> credits</div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="dashboard-grid grid-3 animate">
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div>
+          <div class="stat-num accent" id="statCredits">0</div>
+          <div class="stat-label">Total Credits</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">♻️</div>
+        <div>
+          <div class="stat-num" id="statPickups">0</div>
+          <div class="stat-label">Total Pickups</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏳</div>
+        <div>
+          <div class="stat-num" id="statPending">0</div>
+          <div class="stat-label">Pending Verification</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form + Tip -->
+    <div class="dashboard-grid grid-2 mt-32">
+      <!-- Submit Pickup -->
+      <div class="form-card animate delay-1">
+        <h2>Submit Pickup Request</h2>
+
+        <div class="form-group">
+          <label for="wasteType">Waste Type</label>
+          <select id="wasteType">
+            <option value="plastic">♻️ Plastic — 10 credits/kg</option>
+            <option value="bio">🌿 Bio Waste — 5 credits/kg</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" min="0.1" max="1000" step="0.1" placeholder="e.g. 5.5">
+          <span class="field-error" id="weight-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="pickupDate">Pickup Date</label>
+          <input type="date" id="pickupDate">
+          <span class="field-error" id="pickupDate-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="instructions">Instructions for Volunteer <span style="color:var(--text-faint)">(optional)</span></label>
+          <textarea id="instructions" placeholder="E.g. Call before arriving, leave bag at front gate…"></textarea>
+        </div>
+
+        <div class="credit-estimate">
+          <span>Estimated Credits</span>
+          <strong id="estimate">0</strong>
+        </div>
+
+        <button class="btn btn-primary btn-full" onclick="submitPickup()">Submit Pickup Request →</button>
+      </div>
+
+      <!-- Tips Card -->
+      <div class="form-card animate delay-2" style="display:flex;flex-direction:column;gap:20px">
+        <h2>Tips & Info</h2>
+
+        <div style="background:var(--lime-glow);border:1px solid var(--border-bright);border-radius:var(--radius-sm);padding:20px">
+          <div style="font-weight:600;margin-bottom:6px;font-size:0.9rem">💡 Maximize Credits</div>
+          <p style="font-size:0.85rem;color:var(--text-muted)">Sort your waste before submission. Clean, sorted plastic earns at full rate. Mixed batches may be downgraded.</p>
+        </div>
+
+        <div style="background:var(--surface-hover);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px">
+          <div style="font-weight:600;margin-bottom:6px;font-size:0.9rem">📦 What's Accepted</div>
+          <p style="font-size:0.85rem;color:var(--text-muted)">Plastic bottles, bags, wrappers, cartons. Organic kitchen waste, garden clippings, fruit/vegetable scraps.</p>
+        </div>
+
+        <div style="background:var(--surface-hover);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px">
+          <div style="font-weight:600;margin-bottom:6px;font-size:0.9rem">⚡ Credit Rates</div>
+          <p style="font-size:0.85rem;color:var(--text-muted)">Plastic: <strong style="color:var(--lime)">10 cr/kg</strong> · Bio Waste: <strong style="color:var(--teal)">5 cr/kg</strong><br>Credits credited after volunteer verification.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pickup History -->
+    <div class="history-card mt-32 animate delay-3">
+      <div class="card-header">
+        <h2>Pickup History</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Weight</th>
+              <th>Credits</th>
+              <th>Status</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <tr><td colspan="6"><div class="empty-state"><div class="icon">📦</div><p>Loading…</p></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script>
+    // Sync second name display and header credits after render
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = (() => { try { return JSON.parse(localStorage.getItem('c4t_current_user')); } catch { return null; } })();
+      if (!user) return;
+      const n2 = document.getElementById('dashUserName2');
+      const hc = document.getElementById('headerCredits');
+      if (n2) n2.textContent = user.username;
+      if (hc) hc.textContent = user.credits || 0;
+    });
+  </script>
+</body>
+</html>

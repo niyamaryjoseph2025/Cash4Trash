@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Panel — Cash4Trash</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body data-page="volunteer">
+
+  <header class="navbar glass">
+    <a href="index.html" class="logo">♻ Cash<span>4</span>Trash</a>
+    <nav>
+      <a id="volPill" class="user-pill" href="#">
+        <div class="user-avatar" id="volAvatar">V</div>
+        <span id="volName">Volunteer</span>
+      </a>
+      <a href="#" class="btn-nav" onclick="logout(); return false">Logout</a>
+    </nav>
+  </header>
+
+  <div class="page-wrapper">
+
+    <div class="page-header">
+      <div>
+        <h1>Volunteer <span class="accent">Panel</span></h1>
+        <p class="text-muted mt-8">Review and complete waste pickup requests. Earn credits with every verified pickup.</p>
+      </div>
+    </div>
+
+    <!-- Volunteer Stats -->
+    <div class="dashboard-grid grid-2 animate">
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div>
+          <div class="stat-num accent" id="volCredits">0</div>
+          <div class="stat-label">Volunteer Credits Earned</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div>
+          <div class="stat-num" id="volCompleted">0</div>
+          <div class="stat-label">Pickups Completed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Pickups -->
+    <div class="form-card mt-32 animate delay-1">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <h2>Pending Pickup Requests</h2>
+        <button class="btn btn-secondary" style="font-size:0.82rem;padding:8px 16px" onclick="renderPendingPickups()">↺ Refresh</button>
+      </div>
+
+      <div id="pickupRequests">
+        <div class="empty-state"><div class="icon">⏳</div><p>Loading requests…</p></div>
+      </div>
+    </div>
+
+    <!-- How it works for volunteers -->
+    <div class="form-card mt-32 animate delay-2">
+      <h2 style="margin-bottom:20px">Volunteer Guidelines</h2>
+      <div class="dashboard-grid grid-3" style="margin-top:0">
+        <div style="background:var(--lime-glow);border:1px solid var(--border-bright);border-radius:var(--radius-sm);padding:20px">
+          <div style="font-size:1.5rem;margin-bottom:8px">📍</div>
+          <h3 style="font-size:0.95rem;margin-bottom:6px">Arrive on time</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted)">Be punctual. If delayed, message the user via the app.</p>
+        </div>
+        <div style="background:var(--surface-hover);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px">
+          <div style="font-size:1.5rem;margin-bottom:8px">⚖️</div>
+          <h3 style="font-size:0.95rem;margin-bottom:6px">Verify weight</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted)">Use a scale to confirm the actual weight before completing.</p>
+        </div>
+        <div style="background:var(--surface-hover);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px">
+          <div style="font-size:1.5rem;margin-bottom:8px">♻️</div>
+          <h3 style="font-size:0.95rem;margin-bottom:6px">Sort waste</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted)">Keep plastic and bio waste separate for proper recycling.</p>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:16px 20px;background:var(--teal-dim);border:1px solid rgba(62,255,200,0.2);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text-muted)">
+        💰 You earn <strong style="color:var(--teal)">20% of the pickup's credit value</strong> for every completed verification. Reject fraudulent or incorrect submissions.
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast-container"></div>
+</body>
+</html>

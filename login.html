@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Cash4Trash</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <header class="navbar glass">
+    <a href="index.html" class="logo">♻ Cash<span>4</span>Trash</a>
+    <nav>
+      <a href="index.html">← Home</a>
+    </nav>
+  </header>
+
+  <div class="login-page">
+    <div class="login-box">
+      <div class="login-logo">♻ Cash<span class="accent">4</span>Trash</div>
+      <p class="login-sub">Sign in or create your account in seconds</p>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-user" onclick="showTab('tab-user')">User</button>
+        <button class="tab-btn" data-tab="tab-volunteer" onclick="showTab('tab-volunteer')">Volunteer</button>
+        <button class="tab-btn" data-tab="tab-admin" onclick="showTab('tab-admin')">Admin</button>
+      </div>
+
+      <!-- User Tab -->
+      <div id="tab-user" class="tab-content active">
+        <div class="form-group">
+          <label for="userName">Username</label>
+          <input type="text" id="userName" placeholder="Enter your username" autocomplete="off">
+          <span class="field-error" id="userName-error"></span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:20px">New here? Just enter a name to auto-register and get 50 starter credits.</p>
+        <button class="btn btn-primary btn-full" onclick="loginUser()">Login / Register →</button>
+      </div>
+
+      <!-- Volunteer Tab -->
+      <div id="tab-volunteer" class="tab-content">
+        <div class="form-group">
+          <label for="volunteerName">Volunteer Name</label>
+          <input type="text" id="volunteerName" placeholder="Enter your volunteer name" autocomplete="off">
+          <span class="field-error" id="volunteerName-error"></span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:20px">Volunteers earn 20% of each verified pickup's credit value.</p>
+        <button class="btn btn-primary btn-full" onclick="loginVolunteer()">Enter Volunteer Panel →</button>
+      </div>
+
+      <!-- Admin Tab -->
+      <div id="tab-admin" class="tab-content">
+        <div class="form-group">
+          <label for="adminPassword">Admin Password</label>
+          <input type="password" id="adminPassword" placeholder="••••••••">
+          <span class="field-error" id="adminPassword-error"></span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:20px">Default password: <code style="background:var(--surface-hover);padding:2px 6px;border-radius:4px">admin123</code></p>
+        <button class="btn btn-primary btn-full" onclick="loginAdmin()">Admin Access →</button>
+      </div>
+
+      <div style="margin-top:24px;text-align:center">
+        <a href="leaderboard.html" style="font-size:0.82rem;color:var(--text-faint)">View Leaderboard</a>
+        <span style="color:var(--text-faint);margin:0 8px">·</span>
+        <a href="tutorial.html" style="font-size:0.82rem;color:var(--text-faint)">User Guide</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+</body>
+</html>
